@@ -16,6 +16,8 @@ class chessPiece {
 
     
     chessPiece(bool newColour, std::vector<int> newPosition, std::string newType, bool firstMove, std::string newDescription);
+    chessPiece();
     ~chessPiece();
     bool legalMove(std::vector<int> newposition);
+    std::vector<std::vector<int>> squaresAffected(std::vector<chessPiece> activePieces);
 };

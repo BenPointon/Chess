@@ -7,27 +7,18 @@ std::vector<boardSquare> initialize_board(std::vector<chessPiece> pieces){
     int counter = 0;
     for(int y = 1; y < 9; y++){
         for(int x = 1; x < 9; x++){
-            // std::cout << "x: " << x << "y: " << y << "\n"; works fine
             int tempColour;
             std::string tempFiller;
+            std::vector<int> tempPosition = {x,y};
             if(counter == 0 || counter == 2 || counter == 4 || counter == 6 || counter == 9 || counter == 11 || counter == 13 || counter == 15 || counter == 16 || counter == 18 || counter == 20 || counter == 22 || counter == 25 || counter == 27 || counter == 29 || counter == 31 || counter == 32 || counter == 34 || counter == 36 || counter == 38 || counter == 41 || counter == 43 || counter == 45 || counter == 49 || counter == 50 || counter == 52 || counter == 54 || counter == 56 || counter == 57 || counter == 59 || counter == 61 || counter == 63){
                 tempColour = 1;
             }
             else{
                 tempColour = 0;
             }
-            // std::cout << "tempColour: " << tempColour << "\n"; works fine
-
-
-            std::vector<int> tempPosition = {x,y};
-            // std::cout << "x: " << tempPosition[0] << "y: " << tempPosition[1] << "\n"; works fine
-            // std::cout << white.size() << "\n"; works fine
             for(int i = 0; i < pieces.size(); i++){
-                // std::cout << "white[i].position: " << white[i].position[0] << white[i].position[1] << "\n";
-                // std::cout << "tempPosition: " << tempPosition[0] << tempPosition[1] << "\n";
                 if(pieces[i].position[0] == tempPosition[0] && pieces[i].position[1] == tempPosition[1] ){
                     tempFiller = pieces[i].description;
-                    //std::cout << tempFiller << "\n";
                     break;
                 }
                 else if(tempColour == 1){
@@ -36,13 +27,9 @@ std::vector<boardSquare> initialize_board(std::vector<chessPiece> pieces){
                 else{
                     tempFiller = "   ";
                 }
-
-                // std::cout << "tempFiller: " << tempFiller << "\n";
             }
-            //std::cout << "tempFiller: " << tempFiller << "\n";
             boardSquare temp(tempColour,tempPosition,tempFiller);
             board.push_back(temp);
-            //std::cout << board[counter].colour << " " << board[counter].position[0] <<  "," << board[counter].position[1] << " " << board[counter].filler << "\n";
             counter++;
         }
     }
@@ -79,7 +66,53 @@ void printBoard(std::vector<boardSquare> board){
     std::cout << "   |/_/_/_|______|/_/_/_|______|/_/_/_|______|/_/_/_|______|\n";
     std::cout << "\n";
     std::cout << "      a      b      c      d      e      f      g      h\n";
-}   
+}
+
+// define std::vector<chessPiece> get_colour() to return vector of only one colour of active piece
+    std::vector<chessPiece> get_colour(int colour, std::vector<chessPiece> activePiecesVector){
+        std::vector<chessPiece> colourActivePiecesVector;
+        for (int i = 0; i < activePiecesVector.size(); i++){
+            if (activePiecesVector[i].colour == colour){
+                colourActivePiecesVector.push_back(activePiecesVector[i]);
+            }
+            else{
+            }
+        }
+        return colourActivePiecesVector;
+    }
+
+// define is_check()
+
+bool is_check(chessPiece king, std::vector<chessPiece> activePiecesVector){
+    int tempColour;
+    if(king.colour == 0){
+        tempColour = 0;
+    }
+    else{
+        tempColour == 1;
+    }
+    for (int i = 0; i < activePiecesVector.size() ; i++){
+        if(activePiecesVector[i].colour != tempColour){
+            // then need to perform the logic to see if this move puts the king in check
+            activePiecesVector[i].squaresAffected()
+        }
+    }
+
+
+}
+
+bool is_checkmate(chessPiece whiteKing, chessPiece blackKing, std::vector<chessPiece> activePiecesVector, int gameMoveCounter){
+    chessPiece targetKing;
+    if(gameMoveCounter%2 != 0){
+        targetKing = whiteKing;
+    }
+    else{
+        targetKing = blackKing;
+    }
+    // check if targetKing is in check
+        // if in check then check to see if any of the sqares around the king are not in check || if not in check from kinght, any moves from other pieces result in king being out of check
+
+}
 
 int main(){
 
@@ -108,23 +141,6 @@ int main(){
     chessPiece wK2(0,{7,1},"k",true,"wK2");
     chessPiece wR2(0,{8,1},"r",true,"wR2");
 
-    activeWhitePieces.push_back(wP1);
-    activeWhitePieces.push_back(wP2);
-    activeWhitePieces.push_back(wP3);
-    activeWhitePieces.push_back(wP4);
-    activeWhitePieces.push_back(wP5);
-    activeWhitePieces.push_back(wP6);
-    activeWhitePieces.push_back(wP7);
-    activeWhitePieces.push_back(wP8);
-    activeWhitePieces.push_back(wR1);
-    activeWhitePieces.push_back(wK1);
-    activeWhitePieces.push_back(wB1);
-    activeWhitePieces.push_back(wQu);
-    activeWhitePieces.push_back(wKi);
-    activeWhitePieces.push_back(wB2);
-    activeWhitePieces.push_back(wK2);
-    activeWhitePieces.push_back(wR2);
-
     //black pieces
     chessPiece bP1(1,{1,7},"p",true,"bP1");
     chessPiece bP2(1,{2,7},"p",true,"bP2");
@@ -143,23 +159,6 @@ int main(){
     chessPiece bB2(1,{6,8},"b",true,"bB2");
     chessPiece bK2(1,{7,8},"k",true,"bK2");
     chessPiece bR2(1,{8,8},"r",true,"bR2");
-
-    activeBlackPieces.push_back(bP1);
-    activeBlackPieces.push_back(bP2);
-    activeBlackPieces.push_back(bP3);
-    activeBlackPieces.push_back(bP4);
-    activeBlackPieces.push_back(bP5);
-    activeBlackPieces.push_back(bP6);
-    activeBlackPieces.push_back(bP7);
-    activeBlackPieces.push_back(bP8);
-    activeBlackPieces.push_back(bR1);
-    activeBlackPieces.push_back(bK1);
-    activeBlackPieces.push_back(bB1);
-    activeBlackPieces.push_back(bQu);
-    activeBlackPieces.push_back(bKi);
-    activeBlackPieces.push_back(bB2);
-    activeBlackPieces.push_back(bK2);
-    activeBlackPieces.push_back(bR2);
 
     activePieces.push_back(wP1);
     activePieces.push_back(wP2);
@@ -203,6 +202,11 @@ int main(){
     //std::cout << "board.filler: " << board[0].filler << "\n";
     //std::cout << "chessPiece.Position: " << bR2.description << "\n";
 
+    int turnCounter = 1;
+
+    // check if kings are in checkmate
+
+    
 
     // ask for white's move
 
