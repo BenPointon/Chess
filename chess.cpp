@@ -83,7 +83,15 @@ void printBoard(std::vector<boardSquare> board){
 
 // define is_check()
 
-bool is_check(chessPiece king, std::vector<chessPiece> activePiecesVector){
+// define check structure which returns a bool and a vector of chess pieces
+struct checkStruct {
+    bool isCheck;
+    std::vector<chessPiece> checkPieces;
+};
+
+checkStruct is_check(chessPiece king, std::vector<chessPiece> activePiecesVector){
+    checkStruct tempCheckstruct;
+    tempCheckstruct.isCheck = false;
     int tempColour;
     if(king.colour == 0){
         tempColour = 0;
@@ -93,12 +101,18 @@ bool is_check(chessPiece king, std::vector<chessPiece> activePiecesVector){
     }
     for (int i = 0; i < activePiecesVector.size() ; i++){
         if(activePiecesVector[i].colour != tempColour){
-            // then need to perform the logic to see if this move puts the king in check
-            activePiecesVector[i].squaresAffected()
+            // then need to perform the logic to see if the king is in check
+            std::vector<std::vector<int>> tempSquaresAffected = activePiecesVector[i].squaresAffected(activePiecesVector);
+            for (int j = 0; j < tempSquaresAffected.size(); j++ ){
+                if (tempSquaresAffected[j] == king.position){
+                    tempCheckstruct.isCheck = true;
+                    tempCheckstruct.checkPieces.push_back(activePiecesVector[i]);
+                    break;
+                }
+            }
         }
     }
-
-
+    return tempCheckstruct;
 }
 
 bool is_checkmate(chessPiece whiteKing, chessPiece blackKing, std::vector<chessPiece> activePiecesVector, int gameMoveCounter){
@@ -110,16 +124,168 @@ bool is_checkmate(chessPiece whiteKing, chessPiece blackKing, std::vector<chessP
         targetKing = blackKing;
     }
     // check if targetKing is in check
-        // if in check then check to see if any of the sqares around the king are not in check || if not in check from kinght, any moves from other pieces result in king being out of check
+    for(int i=0; i<activePiecesVector.size(); i++){
+        if (activePiecesVector[i].colour != targetKing.colour){
+            checkStruct isCheck = is_check(targetKing, activePiecesVector);
+            if (isCheck.isCheck == true){
+                /* for this we probably need is_check() to spit out a structure containing 2 things
+                1) true/false
+                2) the pieces that put the king in check
+                with this info we can find the squares affected by the checking pieces and cross reference this with the squares affected by
+                the opposite player's peices, if no crossover then there is no piece move that the player can do to get out of check.*/
+                if(isCheck.checkPieces.size() < 2 && isCheck.checkPieces[0].type != "k"){
+                    std::vector<std::vector<int>> tempSquares = isCheck.checkPieces[0].squaresAffected(activePiecesVector);
+                    for (int i=0;i<activePiecesVector.size();i++){
+                        if (activePiecesVector[i].colour!=isCheck.checkPieces[0].colour){
+                            std::vector<std::vector<int>> tempSquaresAffected = activePiecesVector[i].squaresAffected(activePiecesVector);
+                            for (int j=0;j<tempSquaresAffected.size();j++){
+                                for (int k=0;k<tempSquares.size();k++){
+                                    if (tempSquaresAffected[j] == tempSquares[k]){
+                                        return false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                /* if in check & no moves to get out of check then check to see if any of the sqares around the king are not in check */
+                std::vector<std::vector<int>> mateWeb;
+                for(int x=-1; x<2; x++){
+                    for(int y=-1; y<2; y++){
+                        if (x != 0 && y != 0){
+                            std::vector<int> tempSquare;
+                            int tempX = targetKing.position[0]+x;
+                            int tempY = targetKing.position[1]+y;
+                            tempSquare.push_back(tempX);
+                            tempSquare.push_back(tempY);
+                            chessPiece tempKing(targetKing.colour, tempSquare, targetKing.type, targetKing.firstMove, targetKing.description);
+                            checkStruct tempIsCheck = is_check(tempKing, activePiecesVector);
+                            if (tempIsCheck.isCheck == true){
+                                mateWeb.push_back(tempSquare);
+                            }
+                            else{
+                                return false;
+                            }
+                        }
+                    }
+                }
+                if (mateWeb.size() == 8){
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+std::string check_piece(int turnCounter, std::vector<chessPiece> activePieces){
+    std::string movePiece;
+    int validPiece=false;
+    int colour;
+    if (turnCounter%2 != 0){
+        colour = 0;
+        while(validPiece == false){
+            std::cout << "White, please enter the piece that you wish to move: \n";
+            std::cin >> movePiece;
+            for(int i=0; i < activePieces.size(); i++){
+                if(activePieces[i].description == movePiece && activePieces[i].colour == colour){
+                    std::vector<std::vector<int>> squaresAffected = activePieces[i].squaresAffected(activePieces);
+                    if (squaresAffected.size() > 0){
+                        validPiece = true;
+                        return movePiece;
+                    }
+                    else{
+                        std::cout << "No valid moves. \n";
+                    }
+                }
+            }
+            std::cout << "Invalid piece.\n";
+        }
+    }
+    else{
+        colour = 1;
+        while(validPiece == false){
+            std::cout << "Black, please enter the piece that you wish to move: \n";
+            std::cin >> movePiece;
+            for(int i=0; i < activePieces.size(); i++){
+                if(activePieces[i].description == movePiece && activePieces[i].colour == colour){
+                    validPiece = true;
+                    return movePiece;
+                }
+            }
+            std::cout << "Invalid piece.\n";
+        }
+    }
+}
+
+std::vector<int> square_map(std::string checkSquare){
+    std::vector<int> tempVector;
+    int x;
+    int y;
+    if(checkSquare[0] == 'a'){
+        x = 1;
+    }
+    else if(checkSquare[0] == 'b'){
+        x = 2;
+    }
+    else if(checkSquare[0] == 'c'){
+        x = 3;
+    }
+    else if(checkSquare[0] == 'd'){
+        x = 4;
+    }
+    else if(checkSquare[0] == 'e'){
+        x = 5;
+    }
+    else if(checkSquare[0] == 'f'){
+        x = 6;
+    }
+    else if(checkSquare[0] == 'g'){
+        x = 7;
+    }
+    else if(checkSquare[0] == 'h'){
+        x = 8;
+    }
+    tempVector.push_back(x);
+    tempVector.push_back(y);
+    return tempVector;
+}
+
+std::vector<int> check_square(std::string checkPiece, std::vector<chessPiece> activePieces){
+    bool validSquare = false;
+    std::string checkSquare;
+    std::vector<int> mappedSquare;
+    while(validSquare == false){
+        std::cout << "Please enter the square you wish to move to: \n";
+        std::cin >> checkSquare;
+        if(checkSquare.size() != 2 || checkSquare[0] != 'a' || checkSquare[0] != 'b' || checkSquare[0] != 'c' || checkSquare[0] != 'd' || checkSquare[0] != 'e' || checkSquare[0] != 'f'|| checkSquare[0] != 'g'|| checkSquare[0] != 'h'|| checkSquare[1] != 1|| checkSquare[1] != 2|| checkSquare[1] != 3|| checkSquare[1] != 4|| checkSquare[1] != 5|| checkSquare[1] != 6|| checkSquare[1] != 7|| checkSquare[1] != 8 ){
+            std::cout << "Invalid move.\n"; // invalid move
+        }
+        else{
+            mappedSquare = square_map(checkSquare);
+            for(int i=0;i<activePieces.size();i++){
+                if(activePieces[i].description == checkPiece){
+                    std::vector<std::vector<int>> squaresAffected = activePieces[i].squaresAffected(activePieces);
+                    for(int j=0; j<squaresAffected.size(); j++){
+                        if(squaresAffected[j] == mappedSquare){
+                            validSquare = true;
+                            return mappedSquare; // valid move
+                        }
+                    }
+                    std::cout << "Invalid move.\n"; // invalid move
+                }
+            }
+        }
+    }
+}
+
+std::vector<std::vector<chessPiece>> move_piece(std::string pieceToMove, std::vector<int> squareToMoveTo, std::vector<std::vector<chessPiece>> activePieces){
 
 }
 
 int main(){
 
     // initialize pieces board
-
-    std::vector<chessPiece> activeWhitePieces;
-    std::vector<chessPiece> activeBlackPieces;
     std::vector<chessPiece> activePieces;
 
     // white pieces
@@ -198,30 +364,36 @@ int main(){
     std::vector<boardSquare> board = initialize_board(activePieces);
 
     printBoard(board);
-
-    //std::cout << "board.filler: " << board[0].filler << "\n";
-    //std::cout << "chessPiece.Position: " << bR2.description << "\n";
-
+    bool checkmate = false;
+    bool checkState = false;
     int turnCounter = 1;
 
-    // check if kings are in checkmate
+    // check if kings are in check
+    while (checkmate == false){
+    // if in check, checkmate
+        if (turnCounter%2 != 0){
+            checkState = is_check(wKi,activePieces);
+        }
+        else {
+            checkState = is_check(bKi,activePieces);
+        }
 
-    
+        if (checkState == true){
+            // check if checkmate
+        }
+        else {
+            bool myKingCheck = true;
+            while(myKingCheck == true){
+                // ask for piece to move check_piece and check if valid
+                std::string checkPiece = check_piece(turnCounter, activePieces);
+                // ask for square to move to and check if valid
+                std::vector<int> checkSquare = check_square(checkPiece,activePieces);
+                // ensure move does not put own king in check if does then reask these questions
+                std::vector<std::vector<int>> newActiveSquares = move_piece();
+                // else continue
+            }
+        }
 
-    // ask for white's move
-
-
-
-    // check if piece being moved belongs to white
-
-    // check if move is on board
-
-    // check if move is legal for the piece
-
-    // check if piece != knight, check if pathway to end position is blocked
-
-    // check if square moving to is occupied by another piece
-
-    // if colour != white, destroy other piece, & update white's position
+    }
 
 }
