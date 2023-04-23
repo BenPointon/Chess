@@ -223,7 +223,7 @@ std::vector<std::vector<int>> chessPiece::squaresAffected(std::vector<chessPiece
                 tempSquare.push_back(tempX);
                 tempSquare.push_back(tempY);
                 for (int i = 1; i<activePieces.size(); i++){
-                    if (activePieces[i].colour != colour && activePieces[i].position == position){
+                    if (activePieces[i].colour != colour && activePieces[i].position == tempSquare){
                         tempSquaresVector.push_back(tempSquare);
                     }
                 }
@@ -232,7 +232,7 @@ std::vector<std::vector<int>> chessPiece::squaresAffected(std::vector<chessPiece
                 tempSquare.push_back(tempX);
                 tempSquare.push_back(tempY);
                 for (int i = 1; i<activePieces.size(); i++){
-                    if (activePieces[i].colour != colour && activePieces[i].position == position){
+                    if (activePieces[i].colour != colour && activePieces[i].position == tempSquare){
                         tempSquaresVector.push_back(tempSquare);
                     }
                 }
@@ -243,18 +243,18 @@ std::vector<std::vector<int>> chessPiece::squaresAffected(std::vector<chessPiece
                 tempSquare.push_back(tempX);
                 tempSquare.push_back(tempY);
                 for (int i = 1; i<activePieces.size(); i++){
-                    if (activePieces[i].colour != colour && activePieces[i].position == position){
+                    if (activePieces[i].colour != colour && activePieces[i].position == tempSquare){
                         tempSquaresVector.push_back(tempSquare);
                     }
                 }
             }
-            else{
+            else if(position[0]==8){
                 tempX = position[0] - 1;
                 tempY = position[1] + 1;
                 tempSquare.push_back(tempX);
                 tempSquare.push_back(tempY);
                 for (int i = 1; i<activePieces.size(); i++){
-                    if (activePieces[i].colour != colour && activePieces[i].position == position){
+                    if (activePieces[i].colour != colour && activePieces[i].position == tempSquare){
                         tempSquaresVector.push_back(tempSquare);
                     }
                 }
@@ -267,7 +267,7 @@ std::vector<std::vector<int>> chessPiece::squaresAffected(std::vector<chessPiece
                 tempSquare.push_back(tempX);
                 tempSquare.push_back(tempY);
                 for (int i = 1; i<activePieces.size(); i++){
-                    if (activePieces[i].colour != colour && activePieces[i].position == position){
+                    if (activePieces[i].colour != colour && activePieces[i].position == tempSquare){
                         tempSquaresVector.push_back(tempSquare);
                     }
                 }
@@ -276,7 +276,7 @@ std::vector<std::vector<int>> chessPiece::squaresAffected(std::vector<chessPiece
                 tempSquare.push_back(tempX);
                 tempSquare.push_back(tempY);
                 for (int i = 1; i<activePieces.size(); i++){
-                    if (activePieces[i].colour != colour && activePieces[i].position == position){
+                    if (activePieces[i].colour != colour && activePieces[i].position == tempSquare){
                         tempSquaresVector.push_back(tempSquare);
                     }
                 }
@@ -287,12 +287,12 @@ std::vector<std::vector<int>> chessPiece::squaresAffected(std::vector<chessPiece
                 tempSquare.push_back(tempX);
                 tempSquare.push_back(tempY);
                 for (int i = 1; i<activePieces.size(); i++){
-                    if (activePieces[i].colour != colour && activePieces[i].position == position){
+                    if (activePieces[i].colour != colour && activePieces[i].position == tempSquare){
                         tempSquaresVector.push_back(tempSquare);
                     }
                 }
             }
-            else{
+            else if (position[0] ==8){
                 tempX = position[0] - 1;
                 tempY = position[1] - 1;
                 tempSquare.push_back(tempX);
@@ -319,86 +319,158 @@ std::vector<std::vector<int>> chessPiece::squaresAffected(std::vector<chessPiece
     else if(type == "k"){
         tempX = position[0] + 1;
         tempY = position[1] + 2;
-        if (tempX > 0 && tempX < 8 && tempY > 0 && tempY <8){
+        if (tempX > 0 && tempX < 9 && tempY > 0 && tempY < 9){
             tempSquare.push_back(tempX);
             tempSquare.push_back(tempY);
-            tempSquaresVector.push_back(tempSquare);
+            bool squareTaken = false;
+            for (int i = 1; i<activePieces.size(); i++){
+                if (activePieces[i].colour == colour && activePieces[i].position == tempSquare){
+                    squareTaken = true;
+                }
+            }
+            if (squareTaken == false){
+                tempSquaresVector.push_back(tempSquare);
+            }
+            tempSquare = {};
         }
         tempX = position[0] - 1;
         tempY = position[1] + 2;
-        if (tempX > 0 && tempX < 8 && tempY > 0 && tempY <8){
+        if (tempX > 0 && tempX < 9 && tempY > 0 && tempY < 9){
             tempSquare.push_back(tempX);
             tempSquare.push_back(tempY);
-            tempSquaresVector.push_back(tempSquare);
+            bool squareTaken = false;
+            for (int i = 1; i<activePieces.size(); i++){
+                if (activePieces[i].colour == colour && activePieces[i].position == tempSquare){
+                    squareTaken = true;
+                }
+            }
+            if (squareTaken == false){
+                tempSquaresVector.push_back(tempSquare);
+            }
+            tempSquare = {};
         }
         tempX = position[0] + 1;
         tempY = position[1] - 2;
-        if (tempX > 0 && tempX < 8 && tempY > 0 && tempY <8){
+        if (tempX > 0 && tempX < 9 && tempY > 0 && tempY < 9){
             tempSquare.push_back(tempX);
             tempSquare.push_back(tempY);
-            tempSquaresVector.push_back(tempSquare);
+            bool squareTaken = false;
+            for (int i = 1; i<activePieces.size(); i++){
+                if (activePieces[i].colour == colour && activePieces[i].position == tempSquare){
+                    squareTaken = true;
+                }
+            }
+            if (squareTaken == false){
+                tempSquaresVector.push_back(tempSquare);
+            }
+            tempSquare = {};
         }
         tempX = position[0] - 1;
         tempY = position[1] - 2;
-        if (tempX > 0 && tempX < 8 && tempY > 0 && tempY <8){
+        if (tempX > 0 && tempX < 9 && tempY > 0 && tempY < 9){
             tempSquare.push_back(tempX);
             tempSquare.push_back(tempY);
-            tempSquaresVector.push_back(tempSquare);
+            bool squareTaken = false;
+            for (int i = 1; i<activePieces.size(); i++){
+                if (activePieces[i].colour == colour && activePieces[i].position == tempSquare){
+                    squareTaken = true;
+                }
+            }
+            if (squareTaken == false){
+                tempSquaresVector.push_back(tempSquare);
+            }
+            tempSquare = {};
         }
         tempX = position[0] + 2;
         tempY = position[1] + 1;
-        if (tempX > 0 && tempX < 8 && tempY > 0 && tempY <8){
+        if (tempX > 0 && tempX < 9 && tempY > 0 && tempY < 9){
             tempSquare.push_back(tempX);
             tempSquare.push_back(tempY);
-            tempSquaresVector.push_back(tempSquare);
+            bool squareTaken = false;
+            for (int i = 1; i<activePieces.size(); i++){
+                if (activePieces[i].colour == colour && activePieces[i].position == tempSquare){
+                    squareTaken = true;
+                }
+            }
+            if (squareTaken == false){
+                tempSquaresVector.push_back(tempSquare);
+            }
+            tempSquare = {};
         }
         tempX = position[0] + 2;
         tempY = position[1] - 1;
-        if (tempX > 0 && tempX < 8 && tempY > 0 && tempY <8){
+        if (tempX > 0 && tempX < 9 && tempY > 0 && tempY < 9){
             tempSquare.push_back(tempX);
             tempSquare.push_back(tempY);
-            tempSquaresVector.push_back(tempSquare);
+            bool squareTaken = false;
+            for (int i = 1; i<activePieces.size(); i++){
+                if (activePieces[i].colour == colour && activePieces[i].position == tempSquare){
+                    squareTaken = true;
+                }
+            }
+            if (squareTaken == false){
+                tempSquaresVector.push_back(tempSquare);
+            }
+            tempSquare = {};
         }
         tempX = position[0] - 2;
         tempY = position[1] + 1;
-        if (tempX > 0 && tempX < 8 && tempY > 0 && tempY <8){
+        if (tempX > 0 && tempX < 9 && tempY > 0 && tempY < 9){
             tempSquare.push_back(tempX);
             tempSquare.push_back(tempY);
-            tempSquaresVector.push_back(tempSquare);
+            bool squareTaken = false;
+           for (int i = 1; i<activePieces.size(); i++){
+                if (activePieces[i].colour == colour && activePieces[i].position == tempSquare){
+                    squareTaken = true;
+                }
+            }
+            if (squareTaken == false){
+                tempSquaresVector.push_back(tempSquare);
+            }
+            tempSquare = {};
         }
         tempX = position[0] - 2;
         tempY = position[1] - 1;
-        if (tempX > 0 && tempX < 8 && tempY > 0 && tempY <8){
+        if (tempX > 0 && tempX < 9 && tempY > 0 && tempY < 9){
             tempSquare.push_back(tempX);
             tempSquare.push_back(tempY);
-            tempSquaresVector.push_back(tempSquare);
+            bool squareTaken = false;
+           for (int i = 1; i<activePieces.size(); i++){
+                if (activePieces[i].colour == colour && activePieces[i].position == tempSquare){
+                    squareTaken = true;
+                }
+            }
+            if (squareTaken == false){
+                tempSquaresVector.push_back(tempSquare);
+            }
+            tempSquare = {};
         }
     }
     else if(type == "b"){
         std::vector<std::vector<int>> posXY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 4);
-        std::cout<<"size posXY: " << posXY.size() << "\n";
+        /*std::cout<<"size posXY: " << posXY.size() << "\n";
         std::cout<<"calc posXY: \n";
         for(int j=0;j<posXY.size();j++){
             std::cout << posXY[j][0] << "," << posXY[j][1] << "\n";
-        }
+        }*/
         std::vector<std::vector<int>> posXnegY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 5);
-        std::cout<<"size posXnegY: " << posXnegY.size() << "\n";
+       /* std::cout<<"size posXnegY: " << posXnegY.size() << "\n";
         std::cout<<"calc posXnegY: \n";
         for(int j=0;j<posXnegY.size();j++){
             std::cout << posXnegY[j][0] << "," << posXnegY[j][1] << "\n";
-        }
+        }*/
         std::vector<std::vector<int>> negXY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 6);
-        std::cout<<"size negXY: " << negXY.size() << "\n";
+        /*std::cout<<"size negXY: " << negXY.size() << "\n";
         std::cout<<"calc negXY: \n";
         for(int j=0;j<negXY.size();j++){
             std::cout << negXY[j][0] << "," << negXY[j][1] << "\n";
-        }
+        }*/
         std::vector<std::vector<int>> negXposY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 7);
-        std::cout<<"size negXposY: " << negXposY.size() << "\n";
+        /*std::cout<<"size negXposY: " << negXposY.size() << "\n";
         std::cout<<"calc negXposY: \n";
         for(int j=0;j<negXposY.size();j++){
             std::cout << negXposY[j][0] << "," << negXposY[j][1] << "\n";
-        }
+        }*/
         tempSquaresVector.reserve(posXY.size() + posXnegY.size() + negXY.size() + negXposY.size());
         tempSquaresVector.insert(tempSquaresVector.end(), posXY.begin(), posXY.end());
         tempSquaresVector.insert(tempSquaresVector.end(), posXnegY.begin(), posXnegY.end());

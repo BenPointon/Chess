@@ -319,13 +319,15 @@ pieceSquare check_square(std::vector<chessPiece> activePieces, int counter){
         std::cin >> checkSquare;
         //std::cout << checkSquare.size() << " " << typeid(checkSquare[0]).name() << " " << typeid(checkSquare[1]).name();
         if(checkSquare.size() == 2){
-            if(checkSquare[0] == 'a' || checkSquare[0] == 'b' || checkSquare[0] == 'c' || checkSquare[0] == 'd' || checkSquare[0] == 'e' || checkSquare[0] == 'f'|| checkSquare[0] != 'g' || checkSquare[0] == 'h'){
+            if(checkSquare[0] == 'a' || checkSquare[0] == 'b' || checkSquare[0] == 'c' || checkSquare[0] == 'd' || checkSquare[0] == 'e' || checkSquare[0] == 'f'|| checkSquare[0] == 'g' || checkSquare[0] == 'h'){
                 if(checkSquare[1] == '1'|| checkSquare[1] == '2'|| checkSquare[1] == '3'|| checkSquare[1] == '4'|| checkSquare[1] == '5'|| checkSquare[1] == '6'|| checkSquare[1] == '7'|| checkSquare[1] == '8' ){
                     mappedSquare = square_map(checkSquare);
                     //std::cout << "mapped square " << mappedSquare[0] << "," << mappedSquare[1] << "\n";
+                    std::cout << "here1\n";
                     for(int i=0;i<activePieces.size();i++){
                         if(activePieces[i].description == checkPiece){
-                            std::cout << "activePieces[i].description here: " << checkPiece << "\n";
+                            std::cout << "here2\n";
+                           // std::cout << "activePieces[i].description here: " << checkPiece << "\n";
                             // if pawn and first move append up to 2 squares in front if no other piece blocking
                             // else append up to 1 square in front if no other piece blocking
                             std::vector<std::vector<int>> moveableSquares = activePieces[i].squaresAffected(activePieces);
@@ -346,12 +348,12 @@ pieceSquare check_square(std::vector<chessPiece> activePieces, int counter){
                                         squareOneOccupied = true;
                                     }
                                 }
-                                std::cout << "SquareOneOccupied: " << squareOneOccupied << "\n";
+                                //std::cout << "SquareOneOccupied: " << squareOneOccupied << "\n";
                                 if (squareOneOccupied == false){
                                     moveableSquares.push_back(s1);
-                                    std::cout << "activePieces[i].firstmove: " << activePieces[i].firstMove << "\n";
+                                    //std::cout << "activePieces[i].firstmove: " << activePieces[i].firstMove << "\n";
                                     if (activePieces[i].firstMove == 1){
-                                        std::cout << "first move\n";
+                                        //std::cout << "first move\n";
                                         std::vector<int> s2;
                                         s2.push_back(activePieces[i].position[0]);
                                         if(activePieces[i].colour == 0){
@@ -382,7 +384,7 @@ pieceSquare check_square(std::vector<chessPiece> activePieces, int counter){
                                     return pieceSquareReturn; // valid move
                                 }
                             }
-                            std::cout << "Invalid move.2\n"; // invalid move
+                            std::cout << "Invalid move.\n"; // invalid move
                         }
                     }
                 }
@@ -405,8 +407,8 @@ int main(){
 
     // white pieces
     chessPiece wP1(0,{1,2},"p",1,"wP1");
-    std::cout << "wP1.firstMove: " << wP1.firstMove << "\n";
-    std::cout << "1: " << 1 <<"\n";
+   // std::cout << "wP1.firstMove: " << wP1.firstMove << "\n";
+   // std::cout << "1: " << 1 <<"\n";
     chessPiece wP2(0,{2,2},"p",1,"wP2");
     chessPiece wP3(0,{3,2},"p",1,"wP3");
     chessPiece wP4(0,{4,2},"p",1,"wP4");
