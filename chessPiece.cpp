@@ -496,8 +496,41 @@ std::vector<std::vector<int>> chessPiece::squaresAffected(std::vector<chessPiece
         tempSquaresVector.insert(tempSquaresVector.end(), negXY.begin(), negXY.end());
         tempSquaresVector.insert(tempSquaresVector.end(), negXposY.begin(), negXposY.end());
     }
-    else{
-
+    // need to finish king moves
+    else if(type == "ki"){
+        for(int i=-1;i<2;i++){
+            for(int j=-1;j<2;j++){
+                tempSquare = {};
+                if ((i == -1 && j == -1) ||(i == -1 && j == 0) ||(i == -1 && j == 1) ||(i == 0 && j == -1) ||(i == 0 && j == 1 )||(i == 1 && j == -1 )||(i == 1 && j == -0 )||(i == 1 && j == 1)){
+                    std::cout << "i= " <<i <<"\n";
+                    std::cout <<"j= " << j << "\n";
+                    tempX = position[0] + i;
+                    tempY = position[1] + j;
+                    if(tempX > 0 && tempX < 9 && tempY > 0 && tempY < 9){
+                        tempSquare.push_back(tempX);
+                        tempSquare.push_back(tempY);
+                        std::cout<< "tempSquareX = " << tempSquare[0] << "\n";
+                        std::cout<< "tempSquareY = " << tempSquare[1] << "\n";
+                        bool squareTaken = false;
+                        for (int k=0;k<activePieces.size();k++){
+                            if(colour == activePieces[k].colour && activePieces[k].position == tempSquare){
+                                std::cout << "i= " <<i <<"\n";
+                                std::cout <<"j= " << j << "\n";
+                                std::cout << "Square taken x = " << activePieces[k].position[0] << "\n";
+                                std::cout << "Square taken y = " << activePieces[k].position[1] << "\n";
+                                std::cout << "Taken by piece " << activePieces[k].description << "\n";
+                                squareTaken = true;
+                                break;
+                            }                           
+                        }
+                        if (squareTaken == false){
+                            tempSquaresVector.push_back(tempSquare);
+                        }
+                    }
+                }
+            }
+        }
+        std::cout << "tempSquaresVector.size() = " << tempSquaresVector.size() << "\n";
     }
     return tempSquaresVector;
 }

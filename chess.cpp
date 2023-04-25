@@ -323,14 +323,15 @@ pieceSquare check_square(std::vector<chessPiece> activePieces, int counter){
                 if(checkSquare[1] == '1'|| checkSquare[1] == '2'|| checkSquare[1] == '3'|| checkSquare[1] == '4'|| checkSquare[1] == '5'|| checkSquare[1] == '6'|| checkSquare[1] == '7'|| checkSquare[1] == '8' ){
                     mappedSquare = square_map(checkSquare);
                     //std::cout << "mapped square " << mappedSquare[0] << "," << mappedSquare[1] << "\n";
-                    std::cout << "here1\n";
+                    //std::cout << "here1\n";
                     for(int i=0;i<activePieces.size();i++){
                         if(activePieces[i].description == checkPiece){
-                            std::cout << "here2\n";
-                           // std::cout << "activePieces[i].description here: " << checkPiece << "\n";
+                            //std::cout << "here2\n";
+                            std::cout << "activePieces[i].description here: " << activePieces[i].description << "\n";
                             // if pawn and first move append up to 2 squares in front if no other piece blocking
                             // else append up to 1 square in front if no other piece blocking
                             std::vector<std::vector<int>> moveableSquares = activePieces[i].squaresAffected(activePieces);
+                            std::cout << "moveableSquares size " << moveableSquares.size() << "\n";
                             if (activePieces[i].type == "p"){
                                 std::cout << "pawn\n";
                                 std::vector<int> s1;
@@ -375,14 +376,20 @@ pieceSquare check_square(std::vector<chessPiece> activePieces, int counter){
                                     }
                                 }
                             }
+                            std::cout << "moveableSquares.size() = " << moveableSquares.size() << "\n";
                             std::cout << "moveableSquares: \n";
-                            for(int j=0; j<moveableSquares.size(); j++){
+                            std::vector<std::vector<int>>::size_type moveableSquaresSize;
+                            moveableSquaresSize = moveableSquares.size();
+                            for(int j=0; j<moveableSquaresSize; j++){
+                                std::cout << "I'm in here" << moveableSquaresSize <<"\n";
+                                std::cout << "I'm in here " << j <<"\n";
                                 std::cout<<moveableSquares[j][0] << "," <<moveableSquares[j][1] << "\n";
                                 if(moveableSquares[j] == mappedSquare){
                                     validSquare = true;
                                     pieceSquareReturn.square = mappedSquare;
                                     return pieceSquareReturn; // valid move
                                 }
+                                std::cout << "I'm down here" << moveableSquaresSize <<"\n";
                             }
                             std::cout << "Invalid move.\n"; // invalid move
                         }
