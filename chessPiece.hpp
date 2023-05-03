@@ -19,5 +19,5 @@ class chessPiece {
     chessPiece();
     ~chessPiece();
     bool legalMove(std::vector<int> newposition);
-    std::vector<std::vector<int>> squaresAffected(std::vector<chessPiece> activePieces);
+    std::vector<std::vector<int>> squaresAffected(std::vector<chessPiece> activePieces, int mate);
 };

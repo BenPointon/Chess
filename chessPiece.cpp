@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-std::vector<std::vector<int>> returnUnblockedPositiveXLoop(int x, int y, std::vector<chessPiece> activePieces, int targetColour, int calc){
+std::vector<std::vector<int>> returnUnblockedPositiveXLoop(int x, int y, std::vector<chessPiece> activePieces, int targetColour, int calc, int mate){
     std::vector<std::vector<int>> tempSquaresVector;
     std::vector<int> tempSquare;
     int tempX;
@@ -17,13 +17,28 @@ std::vector<std::vector<int>> returnUnblockedPositiveXLoop(int x, int y, std::ve
             tempSquare.push_back(tempX);
             tempSquare.push_back(tempY);
             for(int j=0;j<activePieces.size();j++){
-                if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour){
+                if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour && mate == 0){
                     return tempSquaresVector;
                 }
-                else if(tempSquare == activePieces[j].position && targetColour != activePieces[j].colour){
+                else if(tempSquare == activePieces[j].position && targetColour != activePieces[j].colour && mate == 0){
                     tempSquaresVector.push_back(tempSquare);
                     return tempSquaresVector;
                 }
+                else if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour&& mate == 1){
+                    return {};
+                }
+                else if (tempSquare == activePieces[j].position && targetColour != activePieces[j].colour && mate == 1){
+                    if(activePieces[j].description == "ki"){
+                        tempSquaresVector.push_back(tempSquare);
+                        return tempSquaresVector;
+                    }
+                    else{
+                        return {};
+                    }
+                }
+                else if ( (j+1) == activePieces.size() && mate == 1 && tempSquare != activePieces[j].position && tempSquare[0] == 8){
+                        return {};
+                    }
             }
             tempSquaresVector.push_back(tempSquare);
         }
@@ -37,13 +52,28 @@ std::vector<std::vector<int>> returnUnblockedPositiveXLoop(int x, int y, std::ve
             tempSquare.push_back(tempX);
             tempSquare.push_back(tempY);
             for(int j=0;j<activePieces.size();j++){
-                if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour){
+                if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour && mate == 0){
                     return tempSquaresVector;
                 }
-                else if(tempSquare == activePieces[j].position && targetColour != activePieces[j].colour){
+                else if(tempSquare == activePieces[j].position && targetColour != activePieces[j].colour && mate == 0){
                     tempSquaresVector.push_back(tempSquare);
                     return tempSquaresVector;
                 }
+                else if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour&& mate == 1){
+                    return {};
+                }
+                else if (tempSquare == activePieces[j].position && targetColour != activePieces[j].colour && mate == 1){
+                    if(activePieces[j].type == "ki"){
+                        tempSquaresVector.push_back(tempSquare);
+                        return tempSquaresVector;
+                    }
+                    else{
+                        return {};
+                    }
+                }
+                else if ( (j+1) == activePieces.size() && mate == 1 && tempSquare != activePieces[j].position && tempSquare[0] == 1){
+                        return {};
+                    }
             }
             tempSquaresVector.push_back(tempSquare);
         }
@@ -57,13 +87,28 @@ std::vector<std::vector<int>> returnUnblockedPositiveXLoop(int x, int y, std::ve
             tempSquare.push_back(tempX);
             tempSquare.push_back(tempY);
             for(int j=0;j<activePieces.size();j++){
-                if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour){
+                if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour&& mate == 0){
                     return tempSquaresVector;
                 }
-                else if(tempSquare == activePieces[j].position && targetColour != activePieces[j].colour){
+                else if(tempSquare == activePieces[j].position && targetColour != activePieces[j].colour&& mate == 0){
                     tempSquaresVector.push_back(tempSquare);
                     return tempSquaresVector;
                 }
+                else if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour&& mate == 1){
+                    return {};
+                }
+                else if (tempSquare == activePieces[j].position && targetColour != activePieces[j].colour && mate == 1){
+                    if(activePieces[j].type == "ki"){
+                        tempSquaresVector.push_back(tempSquare);
+                        return tempSquaresVector;
+                    }
+                    else{
+                        return {};
+                    }
+                }
+                else if ( (j+1) == activePieces.size() && mate == 1 && tempSquare != activePieces[j].position && tempSquare[1] == 8){
+                        return {};
+                    }
             }
             tempSquaresVector.push_back(tempSquare);
         }
@@ -77,13 +122,28 @@ std::vector<std::vector<int>> returnUnblockedPositiveXLoop(int x, int y, std::ve
             tempSquare.push_back(tempX);
             tempSquare.push_back(tempY);
             for(int j=0;j<activePieces.size();j++){
-                if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour){
+                if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour&& mate == 0){
                     return tempSquaresVector;
                 }
-                else if(tempSquare == activePieces[j].position && targetColour != activePieces[j].colour){
+                else if(tempSquare == activePieces[j].position && targetColour != activePieces[j].colour&& mate == 0){
                     tempSquaresVector.push_back(tempSquare);
                     return tempSquaresVector;
                 }
+                else if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour&& mate == 1){
+                    return {};
+                }
+                else if (tempSquare == activePieces[j].position && targetColour != activePieces[j].colour && mate == 1){
+                    if(activePieces[j].type == "ki"){
+                        tempSquaresVector.push_back(tempSquare);
+                        return tempSquaresVector;
+                    }
+                    else{
+                        return {};
+                    }
+                }
+                else if ( (j+1) == activePieces.size() && mate == 1 && tempSquare != activePieces[j].position && tempSquare[1] == 1){
+                        return {};
+                    }
             }
             tempSquaresVector.push_back(tempSquare);
         }
@@ -96,18 +156,37 @@ std::vector<std::vector<int>> returnUnblockedPositiveXLoop(int x, int y, std::ve
             tempX = x+i;
             tempY = y+i;
             if(tempX >=1 && tempY >=1 && tempX <9 && tempY <9){
+                //std::cout << "calc 4:" << tempX << "," << tempY << "\n";
                 tempSquare = {};
                 tempSquare.push_back(tempX);
                 tempSquare.push_back(tempY);
                 for(int j=0;j<activePieces.size();j++){
-                if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour){
-                    return tempSquaresVector;
+                    if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour&& mate == 0){
+                        //std::cout << "stopping before: " << tempX << "," << tempY << "\n";
+                        return tempSquaresVector;
+                    }
+                    else if(tempSquare == activePieces[j].position && targetColour != activePieces[j].colour&& mate == 0){
+                        tempSquaresVector.push_back(tempSquare);
+                        //std::cout << "stopping on : " << tempX << "," << tempY << "\n";
+                        return tempSquaresVector;
+                    }
+                    else if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour&& mate == 1){
+                    return {};
                 }
-                else if(tempSquare == activePieces[j].position && targetColour != activePieces[j].colour){
-                    tempSquaresVector.push_back(tempSquare);
-                    return tempSquaresVector;
+                    else if (tempSquare == activePieces[j].position && targetColour != activePieces[j].colour && mate == 1){
+                        if(activePieces[j].type == "ki"){
+                            tempSquaresVector.push_back(tempSquare);
+                            return tempSquaresVector;
+                        }
+                        else{
+                            return {};
+                        }
+                    }
+                    else if ( (j+1) == activePieces.size() && mate == 1 && tempSquare != activePieces[j].position && (tempSquare[0] == 8 || tempSquare[1] == 8)){
+                        return {};
+                    }
                 }
-                }
+                //std::cout << "pushing back: " << tempX << "," << tempY << "\n";
                 tempSquaresVector.push_back(tempSquare);
             }
             
@@ -121,18 +200,37 @@ std::vector<std::vector<int>> returnUnblockedPositiveXLoop(int x, int y, std::ve
             tempX = x+i;
             tempY = y-i;
             if(tempX >=1 && tempY >=1 && tempX <9 && tempY <9){
+                //std::cout << "calc 5:" << tempX << "," << tempY << "\n";
                 tempSquare = {};
                 tempSquare.push_back(tempX);
                 tempSquare.push_back(tempY);
                 for(int j=0;j<activePieces.size();j++){
-                if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour){
-                    return tempSquaresVector;
+                    if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour && mate ==0){
+                        //std::cout << "stopping before: " << tempX << "," << tempY << "\n";
+                        return tempSquaresVector;
+                    }
+                    else if(tempSquare == activePieces[j].position && targetColour != activePieces[j].colour && mate ==0){
+                        tempSquaresVector.push_back(tempSquare);
+                        //std::cout << "stopping on : " << tempX << "," << tempY << "\n";
+                        return tempSquaresVector;
+                    }
+                    else if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour&& mate == 1){
+                    return {};
                 }
-                else if(tempSquare == activePieces[j].position && targetColour != activePieces[j].colour){
-                    tempSquaresVector.push_back(tempSquare);
-                    return tempSquaresVector;
+                    else if (tempSquare == activePieces[j].position && targetColour != activePieces[j].colour && mate == 1){
+                        if(activePieces[j].type == "ki"){
+                            tempSquaresVector.push_back(tempSquare);
+                            return tempSquaresVector;
+                        }
+                        else{
+                            return {};
+                        }
+                    }
+                    else if ( (j+1) == activePieces.size() && mate == 1 && tempSquare != activePieces[j].position && (tempSquare[0] == 8 || tempSquare[1] == 1)){
+                        return {};
+                    }
                 }
-                }
+                //std::cout << "pushing back: " << tempX << "," << tempY << "\n";
                 tempSquaresVector.push_back(tempSquare);
             }
             
@@ -146,18 +244,72 @@ std::vector<std::vector<int>> returnUnblockedPositiveXLoop(int x, int y, std::ve
             tempX = x-i;
             tempY = y-i;
             if(tempX >=1 && tempY >=1 && tempX <9 && tempY <9){
+                //std::cout << "calc 6:" << tempX << "," << tempY << "\n";
                 tempSquare = {};
                 tempSquare.push_back(tempX);
                 tempSquare.push_back(tempY);
                 for(int j=0;j<activePieces.size();j++){
-                if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour){
-                    return tempSquaresVector;
+
+                    // if(mate == 0){
+                    //     if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour){
+                    //         std::cout << "stopping before: " << tempX << "," << tempY << "\n";
+                    //         return tempSquaresVector;
+                    //     }
+                    //     else if(tempSquare == activePieces[j].position && targetColour != activePieces[j].colour){
+                    //         tempSquaresVector.push_back(tempSquare);
+                    //         std::cout << "stopping on : " << tempX << "," << tempY << "\n";
+                    //         return tempSquaresVector;
+                    //     }
+                    // }
+                    // else if (mate == 1){
+                    //     if (tempSquare == activePieces[j].position && targetColour == activePieces[j].colour){
+                    //         return {};
+                    //     }
+                    //     else if (tempSquare == activePieces[j].position && targetColour != activePieces[j].colour){
+                    //         std::cout << "we passed here 1" << "\n";
+                    //         if(activePieces[j].type == "ki"){
+                    //             std::cout << "we passed here 2" << "\n";
+                    //             tempSquaresVector.push_back(tempSquare);
+                    //             return tempSquaresVector;
+                    //          }
+                    //         else{
+                    //             std::cout << "we passed here 3" << "\n";
+                    //             return {};
+                    //         }
+                    //         std::cout << "we passed here 4" << "\n";
+                    //     }
+                    // }
+
+                    if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour && mate ==0){
+                        //std::cout << "stopping before: " << tempX << "," << tempY << "\n";
+                        return tempSquaresVector;
+                    }
+                    else if(tempSquare == activePieces[j].position && targetColour != activePieces[j].colour && mate ==0){
+                        tempSquaresVector.push_back(tempSquare);
+                        //std::cout << "stopping on : " << tempX << "," << tempY << "\n";
+                        return tempSquaresVector;
+                    }
+                    else if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour && mate == 1){
+                        return {};
+                    }
+                    else if (tempSquare == activePieces[j].position && targetColour != activePieces[j].colour && mate == 1){
+                        //std::cout << "made it here 1" << "\n";
+                        if(activePieces[j].type == "ki"){
+                            //std::cout << "made it here 2" << "\n";
+                            tempSquaresVector.push_back(tempSquare);
+                            return tempSquaresVector;
+                        }
+                        else{
+                            //std::cout << "made it here 3" << "\n";
+                            return {};
+                        }
+                    }
+                    else if ( (j+1) == activePieces.size() && mate == 1 && tempSquare != activePieces[j].position && (tempSquare[0] == 1 || tempSquare[1] == 1)){
+                        //std::cout << "made it here 4" << "\n";
+                        return {};
+                    }
                 }
-                else if(tempSquare == activePieces[j].position && targetColour != activePieces[j].colour){
-                    tempSquaresVector.push_back(tempSquare);
-                    return tempSquaresVector;
-                }
-                }
+                //std::cout << "pushing back: " << tempX << "," << tempY << "\n";
                 tempSquaresVector.push_back(tempSquare);
             }
             
@@ -171,18 +323,37 @@ std::vector<std::vector<int>> returnUnblockedPositiveXLoop(int x, int y, std::ve
             tempX = x-i;
             tempY = y+i;
             if(tempX >=1 && tempY >=1 && tempX <9 && tempY <9){
+                //std::cout << "calc 7:" << tempX << "," << tempY << "\n";
                 tempSquare = {};
                 tempSquare.push_back(tempX);
                 tempSquare.push_back(tempY);
                 for(int j=0;j<activePieces.size();j++){
-                if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour){
-                    return tempSquaresVector;
+                    if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour && mate ==0){
+                        //std::cout << "stopping before: " << tempX << "," << tempY << "\n";
+                        return tempSquaresVector;
+                    }
+                    else if(tempSquare == activePieces[j].position && targetColour != activePieces[j].colour&& mate ==0){
+                        tempSquaresVector.push_back(tempSquare);
+                        //std::cout << "stopping on : " << tempX << "," << tempY << "\n";
+                        return tempSquaresVector;
+                    }
+                    else if(tempSquare == activePieces[j].position && targetColour == activePieces[j].colour&& mate == 1){
+                    return {};
                 }
-                else if(tempSquare == activePieces[j].position && targetColour != activePieces[j].colour){
-                    tempSquaresVector.push_back(tempSquare);
-                    return tempSquaresVector;
+                    else if (tempSquare == activePieces[j].position && targetColour != activePieces[j].colour && mate == 1){
+                        if(activePieces[j].type == "ki"){
+                            tempSquaresVector.push_back(tempSquare);
+                            return tempSquaresVector;
+                        }
+                        else{
+                            return {};
+                        }
+                    }
+                    else if ( (j+1) == activePieces.size() && mate == 1 && tempSquare != activePieces[j].position && (tempSquare[0] == 1 || tempSquare[1] == 8)){
+                        return {};
+                    }
                 }
-                }
+                //std::cout << "pushing back: " << tempX << "," << tempY << "\n";
                 tempSquaresVector.push_back(tempSquare);
             }
             
@@ -210,7 +381,7 @@ chessPiece::chessPiece(){
 
 chessPiece::~chessPiece(){}
 
-std::vector<std::vector<int>> chessPiece::squaresAffected(std::vector<chessPiece> activePieces){
+std::vector<std::vector<int>> chessPiece::squaresAffected(std::vector<chessPiece> activePieces,int mate){
     std::vector<std::vector<int>> tempSquaresVector;
     std::vector<int> tempSquare;
     int tempX;
@@ -306,10 +477,10 @@ std::vector<std::vector<int>> chessPiece::squaresAffected(std::vector<chessPiece
         }
     }
     else if(type == "r"){
-        std::vector<std::vector<int>> posX = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 0);
-        std::vector<std::vector<int>> negX = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 1);
-        std::vector<std::vector<int>> posY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 2);
-        std::vector<std::vector<int>> negY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 3);
+        std::vector<std::vector<int>> posX = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 0, mate);
+        std::vector<std::vector<int>> negX = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 1, mate);
+        std::vector<std::vector<int>> posY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 2, mate);
+        std::vector<std::vector<int>> negY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 3, mate);
         tempSquaresVector.reserve(posX.size() + negX.size() + posY.size() + negY.size());
         tempSquaresVector.insert(tempSquaresVector.end(), posX.begin(), posX.end());
         tempSquaresVector.insert(tempSquaresVector.end(), negX.begin(), negX.end());
@@ -447,25 +618,25 @@ std::vector<std::vector<int>> chessPiece::squaresAffected(std::vector<chessPiece
         }
     }
     else if(type == "b"){
-        std::vector<std::vector<int>> posXY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 4);
+        std::vector<std::vector<int>> posXY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 4, mate);
         /*std::cout<<"size posXY: " << posXY.size() << "\n";
         std::cout<<"calc posXY: \n";
         for(int j=0;j<posXY.size();j++){
             std::cout << posXY[j][0] << "," << posXY[j][1] << "\n";
         }*/
-        std::vector<std::vector<int>> posXnegY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 5);
+        std::vector<std::vector<int>> posXnegY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 5, mate);
        /* std::cout<<"size posXnegY: " << posXnegY.size() << "\n";
         std::cout<<"calc posXnegY: \n";
         for(int j=0;j<posXnegY.size();j++){
             std::cout << posXnegY[j][0] << "," << posXnegY[j][1] << "\n";
         }*/
-        std::vector<std::vector<int>> negXY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 6);
+        std::vector<std::vector<int>> negXY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 6, mate);
         /*std::cout<<"size negXY: " << negXY.size() << "\n";
         std::cout<<"calc negXY: \n";
         for(int j=0;j<negXY.size();j++){
             std::cout << negXY[j][0] << "," << negXY[j][1] << "\n";
         }*/
-        std::vector<std::vector<int>> negXposY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 7);
+        std::vector<std::vector<int>> negXposY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 7, mate);
         /*std::cout<<"size negXposY: " << negXposY.size() << "\n";
         std::cout<<"calc negXposY: \n";
         for(int j=0;j<negXposY.size();j++){
@@ -473,19 +644,35 @@ std::vector<std::vector<int>> chessPiece::squaresAffected(std::vector<chessPiece
         }*/
         tempSquaresVector.reserve(posXY.size() + posXnegY.size() + negXY.size() + negXposY.size());
         tempSquaresVector.insert(tempSquaresVector.end(), posXY.begin(), posXY.end());
+        //std::cout << "1st insert: \n";
+        // for(int i=0;i<tempSquaresVector.size();i++){
+        //     std::cout << "position " << i << ": " << tempSquaresVector[i][0] << "," << tempSquaresVector[i][1] << "\n";
+        // }
         tempSquaresVector.insert(tempSquaresVector.end(), posXnegY.begin(), posXnegY.end());
+        //std::cout << "2nd insert: \n";
+        // for(int i=0;i<tempSquaresVector.size();i++){
+        //     std::cout << "position " << i << ": " << tempSquaresVector[i][0] << "," << tempSquaresVector[i][1] << "\n";
+        // }
         tempSquaresVector.insert(tempSquaresVector.end(), negXY.begin(), negXY.end());
+        //std::cout << "3rd insert: \n";
+        // for(int i=0;i<tempSquaresVector.size();i++){
+        //     std::cout << "position " << i << ": " << tempSquaresVector[i][0] << "," << tempSquaresVector[i][1] << "\n";
+        // }
         tempSquaresVector.insert(tempSquaresVector.end(), negXposY.begin(), negXposY.end());
+        //std::cout << "4th insert: \n";
+        // for(int i=0;i<tempSquaresVector.size();i++){
+        //     std::cout << "position " << i << ": " << tempSquaresVector[i][0] << "," << tempSquaresVector[i][1] << "\n";
+        // }
     }
     else if(type == "qu"){
-        std::vector<std::vector<int>> posX = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 0);
-        std::vector<std::vector<int>> negX = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 1);
-        std::vector<std::vector<int>> posY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 2);
-        std::vector<std::vector<int>> negY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 3);
-        std::vector<std::vector<int>> posXY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 4);
-        std::vector<std::vector<int>> posXnegY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 5);
-        std::vector<std::vector<int>> negXY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 6);
-        std::vector<std::vector<int>> negXposY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 7);
+        std::vector<std::vector<int>> posX = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 0, mate);
+        std::vector<std::vector<int>> negX = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 1, mate);
+        std::vector<std::vector<int>> posY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 2, mate);
+        std::vector<std::vector<int>> negY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 3, mate);
+        std::vector<std::vector<int>> posXY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 4, mate);
+        std::vector<std::vector<int>> posXnegY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 5, mate);
+        std::vector<std::vector<int>> negXY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 6, mate);
+        std::vector<std::vector<int>> negXposY = returnUnblockedPositiveXLoop(position[0], position[1], activePieces, colour, 7, mate);
         tempSquaresVector.reserve(posX.size() + negX.size() + posY.size() + negY.size() + posXY.size() + posXnegY.size() + negXY.size() + negXposY.size());
         tempSquaresVector.insert(tempSquaresVector.end(), posX.begin(), posX.end());
         tempSquaresVector.insert(tempSquaresVector.end(), negX.begin(), negX.end());
@@ -502,23 +689,23 @@ std::vector<std::vector<int>> chessPiece::squaresAffected(std::vector<chessPiece
             for(int j=-1;j<2;j++){
                 tempSquare = {};
                 if ((i == -1 && j == -1) ||(i == -1 && j == 0) ||(i == -1 && j == 1) ||(i == 0 && j == -1) ||(i == 0 && j == 1 )||(i == 1 && j == -1 )||(i == 1 && j == -0 )||(i == 1 && j == 1)){
-                    std::cout << "i= " <<i <<"\n";
-                    std::cout <<"j= " << j << "\n";
+                  //  std::cout << "i= " <<i <<"\n";
+                   // std::cout <<"j= " << j << "\n";
                     tempX = position[0] + i;
                     tempY = position[1] + j;
                     if(tempX > 0 && tempX < 9 && tempY > 0 && tempY < 9){
                         tempSquare.push_back(tempX);
                         tempSquare.push_back(tempY);
-                        std::cout<< "tempSquareX = " << tempSquare[0] << "\n";
-                        std::cout<< "tempSquareY = " << tempSquare[1] << "\n";
+                       // std::cout<< "tempSquareX = " << tempSquare[0] << "\n";
+                       // std::cout<< "tempSquareY = " << tempSquare[1] << "\n";
                         bool squareTaken = false;
                         for (int k=0;k<activePieces.size();k++){
                             if(colour == activePieces[k].colour && activePieces[k].position == tempSquare){
-                                std::cout << "i= " <<i <<"\n";
-                                std::cout <<"j= " << j << "\n";
-                                std::cout << "Square taken x = " << activePieces[k].position[0] << "\n";
-                                std::cout << "Square taken y = " << activePieces[k].position[1] << "\n";
-                                std::cout << "Taken by piece " << activePieces[k].description << "\n";
+                              //  std::cout << "i= " <<i <<"\n";
+                               // std::cout <<"j= " << j << "\n";
+                               // std::cout << "Square taken x = " << activePieces[k].position[0] << "\n";
+                               // std::cout << "Square taken y = " << activePieces[k].position[1] << "\n";
+                              //  std::cout << "Taken by piece " << activePieces[k].description << "\n";
                                 squareTaken = true;
                                 break;
                             }                           
@@ -530,7 +717,7 @@ std::vector<std::vector<int>> chessPiece::squaresAffected(std::vector<chessPiece
                 }
             }
         }
-        std::cout << "tempSquaresVector.size() = " << tempSquaresVector.size() << "\n";
+     //   std::cout << "tempSquaresVector.size() = " << tempSquaresVector.size() << "\n";
     }
     return tempSquaresVector;
 }
