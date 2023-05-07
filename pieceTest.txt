@@ -1,0 +1,312 @@
+ Standard
+ // white pieces
+    chessPiece wP1(0,{1,2},"p",1,"wP1");
+    chessPiece wP2(0,{2,2},"p",1,"wP2");
+    chessPiece wP3(0,{3,2},"p",1,"wP3");
+    chessPiece wP4(0,{4,2},"p",1,"wP4");
+    chessPiece wP5(0,{5,2},"p",1,"wP5");
+    chessPiece wP6(0,{6,2},"p",1,"wP6");
+    chessPiece wP7(0,{7,2},"p",1,"wP7");
+    chessPiece wP8(0,{8,2},"p",1,"wP8");
+
+    chessPiece wR1(0,{1,1},"r",1,"wR1");
+    chessPiece wK1(0,{2,1},"k",1,"wK1");
+    chessPiece wB1(0,{3,1},"b",1,"wB1");
+    chessPiece wQu(0,{4,1},"qu",1,"wQu");
+    chessPiece wKi(0,{5,1},"ki",1,"wKi");
+    chessPiece wB2(0,{6,1},"b",1,"wB2");
+    chessPiece wK2(0,{7,1},"k",1,"wK2");
+    chessPiece wR2(0,{8,1},"r",1,"wR2");
+
+    //black pieces
+    chessPiece bP1(1,{1,7},"p",1,"bP1");
+    chessPiece bP2(1,{2,7},"p",1,"bP2");
+    chessPiece bP3(1,{3,7},"p",1,"bP3");
+    chessPiece bP4(1,{4,7},"p",1,"bP4");
+    chessPiece bP5(1,{5,7},"p",1,"bP5");
+    chessPiece bP6(1,{6,7},"p",1,"bP6");
+    chessPiece bP7(1,{7,7},"p",1,"bP7");
+    chessPiece bP8(1,{8,7},"p",1,"bP8");
+
+    chessPiece bR1(1,{1,8},"r",1,"bR1");
+    chessPiece bK1(1,{2,8},"k",1,"bK1");
+    chessPiece bB1(1,{3,8},"b",1,"bB1");
+    chessPiece bQu(1,{4,8},"qu",1,"bQu");
+    chessPiece bKi(1,{5,8},"ki",1,"bKi");
+    chessPiece bB2(1,{6,8},"b",1,"bB2");
+    chessPiece bK2(1,{7,8},"k",1,"bK2");
+    chessPiece bR2(1,{8,8},"r",1,"bR2");
+
+    activePieces.push_back(wP1);
+    activePieces.push_back(wP2);
+    activePieces.push_back(wP3);
+    activePieces.push_back(wP4);
+    activePieces.push_back(wP5);
+    activePieces.push_back(wP6);
+    activePieces.push_back(wP7);
+    activePieces.push_back(wP8);
+    activePieces.push_back(wR1);
+    activePieces.push_back(wK1);
+    activePieces.push_back(wB1);
+    activePieces.push_back(wQu);
+    activePieces.push_back(wKi);
+    activePieces.push_back(wB2);
+    activePieces.push_back(wK2);
+    activePieces.push_back(wR2);
+    activePieces.push_back(bP1);
+    activePieces.push_back(bP2);
+    activePieces.push_back(bP3);
+    activePieces.push_back(bP4);
+    activePieces.push_back(bP5);
+    activePieces.push_back(bP6);
+    activePieces.push_back(bP7);
+    activePieces.push_back(bP8);
+    activePieces.push_back(bR1);
+    activePieces.push_back(bK1);
+    activePieces.push_back(bB1);
+    activePieces.push_back(bQu);
+    activePieces.push_back(bKi);
+    activePieces.push_back(bB2);
+    activePieces.push_back(bK2);
+    activePieces.push_back(bR2);
+
+
+Queen Mate
+ // white pieces
+    chessPiece wP1(0,{1,2},"p",1,"wP1");
+    chessPiece wP2(0,{2,2},"p",1,"wP2");
+    chessPiece wP3(0,{3,2},"p",1,"wP3");
+    chessPiece wP4(0,{4,2},"p",1,"wP4");
+    chessPiece wP5(0,{5,2},"p",1,"wP5");
+    chessPiece wP6(0,{6,2},"p",1,"wP6");
+    chessPiece wP7(0,{7,2},"p",1,"wP7");
+    chessPiece wP8(0,{8,2},"p",1,"wP8");
+
+    chessPiece wR1(0,{1,1},"r",1,"wR1");
+    chessPiece wK1(0,{2,1},"k",1,"wK1");
+    chessPiece wB1(0,{3,1},"b",1,"wB1");
+    chessPiece wQu(0,{4,1},"qu",1,"wQu");
+    chessPiece wKi(0,{5,1},"ki",1,"wKi");
+    chessPiece wB2(0,{6,1},"b",1,"wB2");
+    chessPiece wK2(0,{7,1},"k",1,"wK2");
+    chessPiece wR2(0,{8,1},"r",1,"wR2");
+
+    //black pieces
+    chessPiece bP1(1,{1,7},"p",1,"bP1");
+    chessPiece bP2(1,{2,7},"p",1,"bP2");
+    chessPiece bP3(1,{3,7},"p",1,"bP3");
+    chessPiece bP4(1,{4,7},"p",1,"bP4");
+    chessPiece bP5(1,{5,7},"p",1,"bP5");
+    chessPiece bP6(1,{6,7},"p",1,"bP6");
+    chessPiece bP7(1,{7,7},"p",1,"bP7");
+    chessPiece bP8(1,{8,7},"p",1,"bP8");
+
+    chessPiece bR1(1,{1,8},"r",1,"bR1");
+    chessPiece bK1(1,{2,8},"k",1,"bK1");
+    chessPiece bB1(1,{3,8},"b",1,"bB1");
+    chessPiece bQu(1,{4,8},"qu",1,"bQu");
+    chessPiece bKi(1,{5,8},"ki",1,"bKi");
+    chessPiece bB2(1,{6,8},"b",1,"bB2");
+    chessPiece bK2(1,{7,8},"k",1,"bK2");
+    chessPiece bR2(1,{8,8},"r",1,"bR2");
+
+
+    Castling
+     // white pieces
+    chessPiece wP1(0,{1,2},"p",1,"wP1");
+    chessPiece wP2(0,{2,2},"p",1,"wP2");
+    chessPiece wP3(0,{3,2},"p",1,"wP3");
+    chessPiece wP4(0,{4,2},"p",1,"wP4");
+    chessPiece wP5(0,{5,2},"p",1,"wP5");
+    chessPiece wP6(0,{6,2},"p",1,"wP6");
+    chessPiece wP7(0,{7,2},"p",1,"wP7");
+    chessPiece wP8(0,{8,2},"p",1,"wP8");
+
+    chessPiece wR1(0,{1,1},"r",1,"wR1");
+    chessPiece wKi(0,{5,1},"ki",1,"wKi");
+    chessPiece wB2(0,{6,1},"b",1,"wB2");
+    chessPiece wK2(0,{7,1},"k",1,"wK2");
+    chessPiece wR2(0,{8,1},"r",1,"wR2");
+
+    //black pieces
+    chessPiece bP1(1,{1,7},"p",1,"bP1");
+    chessPiece bP2(1,{2,7},"p",1,"bP2");
+    chessPiece bP3(1,{3,7},"p",1,"bP3");
+    chessPiece bP4(1,{4,7},"p",1,"bP4");
+    chessPiece bP5(1,{5,7},"p",1,"bP5");
+    chessPiece bP6(1,{6,7},"p",1,"bP6");
+    chessPiece bP7(1,{7,7},"p",1,"bP7");
+    chessPiece bP8(1,{8,7},"p",1,"bP8");
+
+    chessPiece bR1(1,{1,8},"r",1,"bR1");
+    chessPiece bK1(1,{2,8},"k",1,"bK1");
+    chessPiece bB1(1,{3,8},"b",1,"bB1");
+    chessPiece bQu(1,{4,8},"qu",1,"bQu");
+    chessPiece bKi(1,{5,8},"ki",1,"bKi");
+    chessPiece bB2(1,{6,8},"b",1,"bB2");
+    chessPiece bK2(1,{7,8},"k",1,"bK2");
+    chessPiece bR2(1,{8,8},"r",1,"bR2");
+
+    activePieces.push_back(wP1);
+    activePieces.push_back(wP2);
+    activePieces.push_back(wP3);
+    activePieces.push_back(wP4);
+    activePieces.push_back(wP5);
+    activePieces.push_back(wP6);
+    activePieces.push_back(wP7);
+    activePieces.push_back(wP8);
+    activePieces.push_back(wR1);
+    activePieces.push_back(wKi);
+    activePieces.push_back(wB2);
+    activePieces.push_back(wK2);
+    activePieces.push_back(wR2);
+    activePieces.push_back(bP1);
+    activePieces.push_back(bP2);
+    activePieces.push_back(bP3);
+    activePieces.push_back(bP4);
+    activePieces.push_back(bP5);
+    activePieces.push_back(bP6);
+    activePieces.push_back(bP7);
+    activePieces.push_back(bP8);
+    activePieces.push_back(bR1);
+    activePieces.push_back(bK1);
+    activePieces.push_back(bB1);
+    activePieces.push_back(bQu);
+    activePieces.push_back(bKi);
+    activePieces.push_back(bB2);
+    activePieces.push_back(bK2);
+    activePieces.push_back(bR2);
+
+
+    Castling in check
+     // white pieces
+    chessPiece wP1(0,{1,2},"p",1,"wP1");
+    chessPiece wP3(0,{3,2},"p",1,"wP3");
+    chessPiece wP4(0,{4,2},"p",1,"wP4");
+    chessPiece wP5(0,{5,2},"p",1,"wP5");
+    chessPiece wP6(0,{6,2},"p",1,"wP6");
+    chessPiece wP7(0,{7,2},"p",1,"wP7");
+    chessPiece wP8(0,{8,2},"p",1,"wP8");
+
+    chessPiece wR1(0,{1,1},"r",1,"wR1");
+    chessPiece wKi(0,{5,1},"ki",1,"wKi");
+    chessPiece wB2(0,{6,1},"b",1,"wB2");
+    chessPiece wK2(0,{7,1},"k",1,"wK2");
+    chessPiece wR2(0,{8,1},"r",1,"wR2");
+
+    //black pieces
+    chessPiece bP1(1,{1,7},"p",1,"bP1");
+    chessPiece bP2(1,{2,7},"p",1,"bP2");
+    chessPiece bP3(1,{3,7},"p",1,"bP3");
+    chessPiece bP4(1,{4,7},"p",1,"bP4");
+    chessPiece bP5(1,{5,7},"p",1,"bP5");
+    chessPiece bP6(1,{6,7},"p",1,"bP6");
+    chessPiece bP7(1,{7,7},"p",1,"bP7");
+    chessPiece bP8(1,{8,7},"p",1,"bP8");
+
+    chessPiece bR1(1,{2,6},"r",1,"bR1");
+    chessPiece bK1(1,{2,8},"k",1,"bK1");
+    chessPiece bB1(1,{3,8},"b",1,"bB1");
+    chessPiece bQu(1,{4,8},"qu",1,"bQu");
+    chessPiece bKi(1,{5,8},"ki",1,"bKi");
+    chessPiece bB2(1,{6,8},"b",1,"bB2");
+    chessPiece bK2(1,{7,8},"k",1,"bK2");
+    chessPiece bR2(1,{8,8},"r",1,"bR2");
+
+    activePieces.push_back(wP1);
+    activePieces.push_back(wP3);
+    activePieces.push_back(wP4);
+    activePieces.push_back(wP5);
+    activePieces.push_back(wP6);
+    activePieces.push_back(wP7);
+    activePieces.push_back(wP8);
+    activePieces.push_back(wR1);
+    activePieces.push_back(wKi);
+    activePieces.push_back(wB2);
+    activePieces.push_back(wK2);
+    activePieces.push_back(wR2);
+    activePieces.push_back(bP1);
+    activePieces.push_back(bP2);
+    activePieces.push_back(bP3);
+    activePieces.push_back(bP4);
+    activePieces.push_back(bP5);
+    activePieces.push_back(bP6);
+    activePieces.push_back(bP7);
+    activePieces.push_back(bP8);
+    activePieces.push_back(bR1);
+    activePieces.push_back(bK1);
+    activePieces.push_back(bB1);
+    activePieces.push_back(bQu);
+    activePieces.push_back(bKi);
+    activePieces.push_back(bB2);
+    activePieces.push_back(bK2);
+    activePieces.push_back(bR2);
+
+
+    castling in between
+     // white pieces
+    chessPiece wP1(0,{1,2},"p",1,"wP1");
+    chessPiece wP2(0,{2,2},"p",1,"wP2");
+    chessPiece wP3(0,{3,2},"p",1,"wP3");
+    chessPiece wP4(0,{4,2},"p",1,"wP4");
+    chessPiece wP5(0,{5,2},"p",1,"wP5");
+    chessPiece wP6(0,{6,2},"p",1,"wP6");
+    chessPiece wP7(0,{7,2},"p",1,"wP7");
+    chessPiece wP8(0,{8,2},"p",1,"wP8");
+
+    chessPiece wR1(0,{1,1},"r",1,"wR1");
+    chessPiece wK1(0,{2,1},"k",1,"wK1");
+    chessPiece wKi(0,{5,1},"ki",1,"wKi");
+    chessPiece wB2(0,{6,1},"b",1,"wB2");
+    chessPiece wK2(0,{7,1},"k",1,"wK2");
+    chessPiece wR2(0,{8,1},"r",1,"wR2");
+
+    //black pieces
+    chessPiece bP1(1,{1,7},"p",1,"bP1");
+    chessPiece bP2(1,{2,7},"p",1,"bP2");
+    chessPiece bP3(1,{3,7},"p",1,"bP3");
+    chessPiece bP4(1,{4,7},"p",1,"bP4");
+    chessPiece bP5(1,{5,7},"p",1,"bP5");
+    chessPiece bP6(1,{6,7},"p",1,"bP6");
+    chessPiece bP7(1,{7,7},"p",1,"bP7");
+    chessPiece bP8(1,{8,7},"p",1,"bP8");
+
+    chessPiece bR1(1,{1,8},"r",1,"bR1");
+    chessPiece bK1(1,{2,8},"k",1,"bK1");
+    chessPiece bB1(1,{3,8},"b",1,"bB1");
+    chessPiece bQu(1,{4,8},"qu",1,"bQu");
+    chessPiece bKi(1,{5,8},"ki",1,"bKi");
+    chessPiece bB2(1,{6,8},"b",1,"bB2");
+    chessPiece bK2(1,{7,8},"k",1,"bK2");
+    chessPiece bR2(1,{8,8},"r",1,"bR2");
+
+    activePieces.push_back(wP1);
+    activePieces.push_back(wP2);
+    activePieces.push_back(wP3);
+    activePieces.push_back(wP4);
+    activePieces.push_back(wP5);
+    activePieces.push_back(wP6);
+    activePieces.push_back(wP7);
+    activePieces.push_back(wP8);
+    activePieces.push_back(wR1);
+    activePieces.push_back(wK1);
+    activePieces.push_back(wKi);
+    activePieces.push_back(wB2);
+    activePieces.push_back(wK2);
+    activePieces.push_back(wR2);
+    activePieces.push_back(bP1);
+    activePieces.push_back(bP2);
+    activePieces.push_back(bP3);
+    activePieces.push_back(bP4);
+    activePieces.push_back(bP5);
+    activePieces.push_back(bP6);
+    activePieces.push_back(bP7);
+    activePieces.push_back(bP8);
+    activePieces.push_back(bR1);
+    activePieces.push_back(bK1);
+    activePieces.push_back(bB1);
+    activePieces.push_back(bQu);
+    activePieces.push_back(bKi);
+    activePieces.push_back(bB2);
+    activePieces.push_back(bK2);
+    activePieces.push_back(bR2);
